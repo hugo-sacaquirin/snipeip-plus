@@ -1,0 +1,40 @@
+<div class="modal-backdrop fade show"></div>
+<div class="modal d-block" tabindex="-1">
+  <div class="modal-dialog">
+    <form [formGroup]="form" (ngSubmit)="save()" class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ form.value.id ? 'Editar' : 'Nueva' }} Entidad</h5>
+        <button type="button" class="btn-close" aria-label="Close" (click)="onCancel.emit()"></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group mb-2">
+          <label>Nombre</label>
+          <input class="form-control" formControlName="name">
+        </div>
+        <div class="form-group mb-2">
+          <label>Código</label>
+          <input class="form-control" formControlName="code">
+        </div>
+        <div class="form-group mb-2">
+          <label>Subsector</label>
+          <input class="form-control" formControlName="subSector">
+        </div>
+        <div class="form-group mb-2">
+          <label>Nivel</label>
+          <input class="form-control" formControlName="level">
+        </div>
+        <div class="form-group mb-2">
+          <label>Estado</label>
+          <select class="form-control" formControlName="status">
+            <option value="Activo">ACTIVO</option>
+            <option value="Inactivo">INACTIVO</option>
+          </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" (click)="onCancel.emit()" type="button">Cancelar</button>
+        <button class="btn btn-primary" type="submit">Guardar</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,39 @@
+<div class="card mt-4">
+  <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+    <span>Entidades</span>
+    <button class="btn btn-secondary btn-sm" (click)="openForm()">Nueva Entidad</button>
+  </div>
+  <div class="card-body">
+    <table class="table table-bordered table-hover table-striped">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Código</th>
+          <th>Subsector</th>
+          <th>Nivel</th>
+          <th>Estado</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let entidad of entidades">
+          <td>{{ entidad.name }}</td>
+          <td>{{ entidad.code }}</td>
+          <td>{{ entidad.subSector }}</td>
+          <td>{{ entidad.level }}</td>
+          <td>{{ entidad.status }}</td>
+          <td>
+            <button class="btn btn-info btn-sm" (click)="editEntidad(entidad)">Editar</button>
+            <button class="btn btn-danger btn-sm" (click)="deleteEntidad(entidad.id)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<app-formulario
+  *ngIf="showForm"
+  [entidad]="selectedEntidad"
+  (onSave)="onSave($event)"
+  (onCancel)="closeForm()">
+</app-formulario>

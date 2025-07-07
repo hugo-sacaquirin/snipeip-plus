@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+$primary: #003366;
+$secondary: #FFCC29;
+$danger: #E10600;
+$light: #F5F6FA;
+$info: #2E9DF7;
+
+body { background: $light; }
+.bg-primary { background-color: $primary !important; }
+.text-primary { color: $primary !important; }
