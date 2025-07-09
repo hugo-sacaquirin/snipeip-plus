@@ -8,18 +8,18 @@ const b2cPolicies = {
   },
   authorities: {
     signUpSignIn: {
-      authority: 'https://test123azurea.b2clogin.com/test123azurea.onmicrosoft.com/B2C_1_signupsignin',
+      authority: '',
     },
     passwordReset: {
-      authority: 'https://test123azurea.b2clogin.com/test123azurea.onmicrosoft.com/B2C_1_passwordreset',
+      authority: '',
     }
   },
-  authorityDomain: 'test123azurea.b2clogin.com'
+  authorityDomain: ''
 };
 
 export const msalConfig = {
   auth: {
-    clientId: 'bc51fa4a-2c2f-4be4-ab41-599f4255b250',
+    clientId: '',
     authority: b2cPolicies.authorities.signUpSignIn.authority,
     knownAuthorities: [b2cPolicies.authorityDomain],
     redirectUri: 'http://localhost:4200/',      // O tu URL de prod
