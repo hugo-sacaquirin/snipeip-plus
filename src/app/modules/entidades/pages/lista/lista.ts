@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { EntidadesService } from '../../services/entidades.service';
 import { EntityResponse, EntityRequest } from '../../models/entity.model';
 import { FormularioComponent } from '../formulario/formulario';
+import { FormsModule } from '@angular/forms'; 
 
 @Component({
   selector: 'app-lista',
   standalone: true,
-  imports: [CommonModule, FormularioComponent],
+  imports: [CommonModule,FormsModule, FormularioComponent],
   templateUrl: './lista.html'
 })
 export class ListaComponent implements OnInit {
@@ -19,9 +20,19 @@ export class ListaComponent implements OnInit {
   totalPages = 1;
   showForm = false;
   selectedEntidad: EntityResponse | null = null;
+  filtro: string = '';
+  tipoBusqueda: number = 0; // 0 = nombre, 1 = código
 
   ngOnInit() { this.load(); }
-
+  getEntinesByFilter() {
+    this.entidadesService.getEntinesByFilter(this.page, this.size, this.tipoBusqueda, this.filtro).subscribe(res => {
+      this.entidades = res.content;
+    });
+  }
+  clean() {
+    this.filtro = '';
+    this.load();
+  }
   load() {
     this.entidadesService.getPaged(this.page, this.size).subscribe(res => {
       this.entidades = res.content;

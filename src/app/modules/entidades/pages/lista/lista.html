@@ -4,6 +4,29 @@
     <button class="btn btn-secondary btn-sm" (click)="openForm()">Nueva Entidad</button>
   </div>
   <div class="card-body">
+        <!-- Buscador -->
+    <form class="row g-2 mb-3 align-items-center" (ngSubmit)="getEntinesByFilter()">
+      <div class="col-auto">
+        <select [(ngModel)]="tipoBusqueda" name="tipoBusqueda" class="form-select form-select-sm">
+          <option [value]="0">Nombre</option>
+          <option [value]="1">Código</option>
+        </select>
+      </div>
+      <div class="col-auto flex-grow-1">
+        <input [(ngModel)]="filtro" name="filtro" class="form-control form-control-sm" placeholder="Buscar...">
+      </div>
+      <div class="col-auto">
+        <button class="btn btn-primary btn-sm" type="submit">
+          <i class="bi bi-search"></i> Buscar
+        </button>
+      </div>
+      <div class="col-auto">
+        <button class="btn btn-secondary btn-sm" type="button" (click)="clean()">
+          <i class="bi bi-x"></i> Limpiar
+        </button>
+      </div>
+    </form>
+    <!-- Fin Buscador -->
     <table class="table table-bordered table-hover table-striped">
       <thead>
         <tr>
