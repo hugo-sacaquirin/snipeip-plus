@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../auth/services/auth';
-import { RouterOutlet } from '@angular/router';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterOutlet,RouterLink],
   templateUrl: './home.html'
   //styleUrls: ['./home.scss'] // <-- CORREGIDO (debe ser array, con 's')
 })

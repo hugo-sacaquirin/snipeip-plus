@@ -5,6 +5,7 @@ import { MsalModule, MsalService, MsalGuard, MsalBroadcastService, MSAL_INSTANCE
 import { MSALGuardConfigFactory, MSALInterceptorConfigFactory } from './msal.config';
 import { PublicClientApplication } from '@azure/msal-browser';
 import { msalConfig } from './msal.config';
+import { provideHttpClient } from '@angular/common/http';
 
 export function MSALInstanceFactory() {
   return (window as any).msalInstance || new PublicClientApplication(msalConfig);
@@ -19,6 +20,7 @@ export const appConfig: ApplicationConfig = {
     { provide: MSAL_INTERCEPTOR_CONFIG, useFactory: MSALInterceptorConfigFactory },
     MsalService,
     MsalGuard,
-    MsalBroadcastService
+    MsalBroadcastService,
+    provideHttpClient()
   ]
 };

@@ -1,0 +1,65 @@
+<div class="card mt-4">
+  <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+    <span>Objetivos</span>
+    <button class="btn btn-secondary btn-sm" (click)="openForm()">Nuevo Objetivo</button>
+  </div>
+  <div class="card-body">
+    <!-- Buscador -->
+    <form class="row g-2 mb-3 align-items-center" (ngSubmit)="getObjectivesByFilter()">
+      <div class="col-auto">
+        <select [(ngModel)]="tipoBusqueda" name="tipoBusqueda" class="form-select form-select-sm">
+          <option [value]="0">Nombre</option>
+          <option [value]="1">Tipo de Objetivo</option>
+        </select>
+      </div>
+      <div class="col-auto flex-grow-1">
+        <input [(ngModel)]="filtro" name="filtro" class="form-control form-control-sm" placeholder="Buscar...">
+      </div>
+      <div class="col-auto">
+        <button class="btn btn-primary btn-sm" type="submit">
+          <i class="bi bi-search"></i> Buscar
+        </button>
+      </div>
+      <div class="col-auto">
+        <button class="btn btn-secondary btn-sm" type="button" (click)="clean()">
+          <i class="bi bi-x"></i> Limpiar
+        </button>
+      </div>
+    </form>
+    <!-- Fin Buscador -->
+
+    <table class="table table-bordered table-hover table-striped">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Descripción</th>
+          <th>Tipo</th>
+          <th>Código</th>
+          <th>Eje</th>
+          <th>Estado</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let objetivo of objetivos">
+          <td>{{ objetivo.name }}</td>
+          <td>{{ objetivo.description }}</td>
+          <td>{{ objetivo.type }}</td>
+          <td>{{ objetivo.code }}</td>
+          <td>{{ objetivo.eje }}</td>
+          <td>{{ objetivo.status }}</td>
+          <td>
+            <button class="btn btn-info btn-sm" (click)="editObjetivo(objetivo)">Editar</button>
+            <button class="btn btn-danger btn-sm" (click)="deleteObjetivo(objetivo.id!)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<app-formulario-objetivo
+  *ngIf="showForm"
+  [objetivo]="selectedObjetivo"
+  (onSave)="onSave($event)"
+  (onCancel)="closeForm()">
+</app-formulario-objetivo>

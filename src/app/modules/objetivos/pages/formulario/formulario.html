@@ -1,9 +1,10 @@
+<!-- src/app/modules/objetivos/pages/formulario/formulario.html -->
 <div class="modal-backdrop fade show"></div>
 <div class="modal d-block" tabindex="-1">
   <div class="modal-dialog">
     <form [formGroup]="form" (ngSubmit)="save()" class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">{{ form.value.id ? 'Editar' : 'Nueva' }} Entidad</h5>
+        <h5 class="modal-title">{{ form.value.id ? 'Editar' : 'Nuevo' }} Objetivo</h5>
         <button type="button" class="btn-close" aria-label="Close" (click)="onCancel.emit()"></button>
       </div>
       <div class="modal-body">
@@ -12,16 +13,24 @@
           <input class="form-control" formControlName="name">
         </div>
         <div class="form-group mb-2">
+          <label>Descripción</label>
+          <textarea class="form-control" formControlName="description" rows="2"></textarea>
+        </div>
+        <div class="form-group mb-2">
+          <label>Tipo de Objetivo</label>
+          <select class="form-control" formControlName="type">
+            <option value="ESTRATEGICOS">ESTRATÉGICOS</option>
+            <option value="ODS">ODS</option>
+            <option value="PDN">PDN</option>
+          </select>
+        </div>
+        <div class="form-group mb-2">
           <label>Código</label>
           <input class="form-control" formControlName="code">
         </div>
         <div class="form-group mb-2">
-          <label>Subsector</label>
-          <input class="form-control" formControlName="subSector">
-        </div>
-        <div class="form-group mb-2">
-          <label>Nivel</label>
-          <input class="form-control" formControlName="level">
+          <label>Eje</label>
+          <input class="form-control" formControlName="eje">
         </div>
         <div class="form-group mb-2">
           <label>Estado</label>

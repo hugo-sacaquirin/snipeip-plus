@@ -4,7 +4,7 @@ import { AuthenticationResult } from '@azure/msal-browser';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  constructor(private msal: MsalService) {}
+  constructor(private msal: MsalService) { }
 
   login() {
     console.log("Llamando loginRedirect...");
@@ -16,13 +16,13 @@ export class AuthService {
   }
 
   isLoggedIn(): boolean {
-   const accounts = this.msal.instance.getAllAccounts();
-  console.log('MSAL Accounts:', accounts);
-  console.log('MSAL Instance:', this.msal.instance);
-  // También prueba getActiveAccount()
-  const active = this.msal.instance.getActiveAccount();
-  console.log('Active Account:', active);
-  return accounts.length > 0;
+    const accounts = this.msal.instance.getAllAccounts();
+    console.log('MSAL Accounts:', accounts);
+    console.log('MSAL Instance:', this.msal.instance);
+    // También prueba getActiveAccount()
+    const active = this.msal.instance.getActiveAccount();
+    console.log('Active Account:', active);
+    return accounts.length > 0;
   }
 
   getUser() {

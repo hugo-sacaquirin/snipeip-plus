@@ -15,7 +15,11 @@ export const routes: Routes = [
         path: 'entidades',
         loadComponent: () => import('./modules/entidades/pages/lista/lista').then(m => m.ListaComponent)
       },
-      // Más hijos...
+      {
+        path: 'objetivos',
+        loadComponent: () =>
+          import('./modules/objetivos/pages/lista/lista').then(m => m.ListaObjetivosComponent)
+      },
     ]
   },
   { path: '**', redirectTo: '' }
