@@ -20,6 +20,11 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./modules/objetivos/pages/lista/lista').then(m => m.ListaObjetivosComponent)
       },
+      {
+        path: 'alineaciones',
+        loadComponent: () => import('./modules/alineaciones/pages/formulario/formulario')
+          .then(m => m.FormularioAlineacionComponent)
+      },
     ]
   },
   { path: '**', redirectTo: '' }

@@ -10,9 +10,11 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   errorMsg = '';
+  year = new Date().getFullYear();
   constructor(public auth: AuthService, private router: Router) {}
 
   ngOnInit() {
+    
     console.log('LoginComponent init. isLoggedIn:', this.auth.isLoggedIn());
     // Aquí revisa de nuevo si ya hay sesión (útil después del redirect de Azure)
     if (this.auth.isLoggedIn()) {

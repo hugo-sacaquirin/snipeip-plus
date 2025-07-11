@@ -1,0 +1,16 @@
+.logo-brand {
+  background: #17488a;
+  border-radius: 20px;
+  padding: 10px 32px 10px 24px;
+  display: flex;
+  align-items: center;
+  gap: 18px; // MÁS espacio entre icono y texto
+  margin-bottom: 1rem;
+}
+
+.logo-circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 16px; // separa más el ícono del texto
+}

@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../auth/services/auth';
-import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [RouterOutlet,RouterLink],
-  templateUrl: './home.html'
-  //styleUrls: ['./home.scss'] // <-- CORREGIDO (debe ser array, con 's')
+  templateUrl: './home.html',
+  styleUrls: ['./home.scss'] 
 })
 export class HomeTs {
   constructor(public auth: AuthService) {}

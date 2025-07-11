@@ -1,0 +1,42 @@
+<div class="card mt-4 mx-auto" style="max-width:520px;">
+  <div class="card-header bg-primary text-white">
+    <span>Nueva Alineación de Objetivos</span>
+  </div>
+  <form [formGroup]="form" (ngSubmit)="submit()" class="card-body">
+    <div *ngIf="message" class="alert" [class.alert-success]="!loading && message.includes('exitosamente')" [class.alert-danger]="!loading && message.startsWith('Error')">
+      {{ message }}
+    </div>
+
+    <div class="mb-3">
+      <label>Objetivo Estratégico Institucional</label>
+      <select class="form-select" formControlName="strategicObjectiveId" required>
+        <option value="">Seleccione...</option>
+        <option *ngFor="let obj of objetivosEstrategicos" [value]="obj.id">{{ obj.name }}</option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label>Objetivo PND</label>
+      <select class="form-select" formControlName="pndId" required>
+        <option value="">Seleccione...</option>
+        <option *ngFor="let obj of objetivosPND" [value]="obj.id">{{ obj.name }}</option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label>ODS</label>
+      <select class="form-select" formControlName="odsId" required>
+        <option value="">Seleccione...</option>
+        <option *ngFor="let obj of objetivosODS" [value]="obj.id">{{ obj.name }}</option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label>Entidad Institucional</label>
+      <select class="form-select" formControlName="entityId" required>
+        <option value="">Seleccione...</option>
+        <option *ngFor="let ent of entidades" [value]="ent.id">{{ ent.name }}</option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary w-100" [disabled]="loading">
+      Guardar alineación
+    </button>
+  </form>
+</div>

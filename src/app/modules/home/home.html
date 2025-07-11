@@ -1,34 +1,82 @@
-<div class="container-fluid p-0">
-  <div class="row no-gutters">
-    <nav class="col-md-2 bg-primary sidebar vh-100 d-none d-md-block">
-      <div class="pt-4">
-        <h4 class="text-white text-center mb-4">SIPeIP</h4>
-        <ul class="nav flex-column">
-          <li class="nav-item">
-            <a routerLink="/entidades" class="nav-link text-white" routerLinkActive="active">
-              <i class="bi bi-building"></i> Entidades
-            </a>
-          </li>
-          <li class="nav-item">
-            <a routerLink="/objetivos" class="nav-link text-white" routerLinkActive="active">
-              <i class="bi bi-bullseye"></i> Objetivos
-            </a>
-          </li>
-        </ul>
+<div class="container-fluid p-0" style="background:#f5f6fa; min-height:100vh;">
+  <div class="row g-0">
+    <!-- Sidebar -->
+    <nav class="col-md-2 d-none d-md-block sidebar bg-primary py-4 px-0 position-relative shadow-sm"
+      style="min-height:100vh; border-top-right-radius:1.5rem; border-bottom-right-radius:1.5rem;">
+      <!-- Home o en el componente donde va el logo -->
+      <div class="logo-brand d-flex align-items-center justify-content-center py-2">
+        <span class="logo-circle d-flex align-items-center justify-content-center me-3">
+          <svg width="38" height="38" fill="none" viewBox="0 0 40 40">
+            <circle cx="20" cy="20" r="17" fill="#FFC300" />
+            <line x1="20" y1="13" x2="20" y2="27" stroke="#195ac6" stroke-width="3" stroke-linecap="round" />
+            <line x1="13" y1="20" x2="27" y2="20" stroke="#195ac6" stroke-width="3" stroke-linecap="round" />
+          </svg>
+        </span>
+        <span class="logo-text fw-bold" style="color: #FFC300; font-size: 2.2rem; letter-spacing: 1px;">SIPeIP</span>
+      </div>
+
+      <ul class="nav flex-column">
+        <li class="nav-item">
+          <a routerLink="/entidades" class="nav-link text-white" routerLinkActive="active">
+            <i class="bi bi-building"></i> Entidades
+          </a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/objetivos" class="nav-link text-white" routerLinkActive="active">
+            <i class="bi bi-bullseye"></i> Objetivos
+          </a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/planes" class="nav-link text-white" routerLinkActive="active">
+            <i class="bi bi-diagram-3"></i> Planes
+          </a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/programas" class="nav-link text-white" routerLinkActive="active">
+            <i class="bi bi-kanban"></i> Programas
+          </a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/metas" class="nav-link text-white" routerLinkActive="active">
+            <i class="bi bi-bar-chart"></i> Metas
+          </a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/alineaciones" class="nav-link text-white" routerLinkActive="active">
+            <i class="bi bi-diagram-3"></i> Alineaciones
+          </a>
+        </li>
+      </ul>
+      <div class="position-absolute bottom-0 w-100 px-3 pb-3 d-md-block d-none">
+        <hr class="border-white opacity-25 mb-2">
+        <div class="d-flex align-items-center gap-2">
+          <img src="assets/avatar-default.png" class="rounded-circle"
+            style="width:34px; height:34px; border:2px solid #fff;">
+          <span class="text-white">{{ auth.getUser()?.name || 'Usuario' }}</span>
+        </div>
       </div>
     </nav>
+
+    <!-- Main -->
     <main class="col-md-10 px-4">
-      <nav class="navbar navbar-light bg-white shadow-sm mb-4">
-        <span class="navbar-brand h4">SIPeIP</span>
-        <ul class="navbar-nav ms-auto flex-row">
+      <nav class="navbar navbar-light bg-white shadow-sm mb-4 rounded-4 px-3" style="min-height:64px;">
+        <span class="navbar-brand h4 fw-bold text-primary d-flex align-items-center gap-2">
+          <i class="bi bi-grid-1x2"></i> SIPeIP
+        </span>
+        <ul class="navbar-nav ms-auto flex-row gap-2 align-items-center">
           <li class="nav-item">
-            <a class="nav-link"><i class="bi bi-person-circle"></i> HUGO</a>
+            <a class="nav-link text-dark d-flex align-items-center gap-2" style="font-weight:500;">
+              <i class="bi bi-person-circle fs-5"></i> {{ auth.getUser()?.name || 'Usuario' }}
+            </a>
           </li>
           <li class="nav-item">
-            <button class="btn btn-link nav-link" (click)="auth.logout()">Cerrar sesión</button>
+            <button class="btn btn-warning btn-sm px-3 fw-bold" (click)="auth.logout()">
+              <i class="bi bi-box-arrow-right"></i> Salir
+            </button>
           </li>
         </ul>
       </nav>
+
       <router-outlet></router-outlet>
     </main>
   </div>
