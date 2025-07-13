@@ -1,9 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { AlineacionesService } from '../../services/alineaciones.service';
-import { EntidadesService } from '../../../entidades/services/entidades.service';
-import { ObjetivosService } from '../../../objetivos/services/objetivos.service';
+import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-formulario-alineacion',
@@ -12,55 +9,31 @@ import { ObjetivosService } from '../../../objetivos/services/objetivos.service'
   templateUrl: './formulario.html'
 })
 export class FormularioAlineacionComponent implements OnInit {
+  @Input() objetivosEstrategicos: any[] = [];
+  @Input() objetivosPND: any[] = [];
+  @Input() objetivosODS: any[] = [];
+  @Input() entidades: any[] = [];
+  @Output() onSave = new EventEmitter<any>();
+  @Output() onCancel = new EventEmitter<void>();
+
   form: FormGroup;
   loading = false;
-  message = '';
 
-  // Listas para selects
-  objetivosEstrategicos: any[] = [];
-  objetivosPND: any[] = [];
-  objetivosODS: any[] = [];
-  entidades: any[] = [];
-
-  constructor(
-    private fb: FormBuilder,
-    private alineacionesService: AlineacionesService,
-    private entidadesService: EntidadesService,
-    private objectivesService: ObjetivosService // Necesitas crearlo si no existe
-  ) {
+  constructor(private fb: FormBuilder) {
     this.form = this.fb.group({
       strategicObjectiveId: [null, Validators.required],
       pndId: [null, Validators.required],
       odsId: [null, Validators.required],
-      entityId: [null, Validators.required],
+      entityId: [null, Validators.required]
     });
   }
 
-  ngOnInit() {
-    // Consulta todos los combos (usa tus servicios)
-    this.objectivesService.getObjectivesByFilter(0, 20, 1, 'ESTRATEGICOS').subscribe(res => this.objetivosEstrategicos = res.content);
-    this.objectivesService.getObjectivesByFilter(0, 20, 1, 'PDN').subscribe(res => this.objetivosPND = res.content);
-    this.objectivesService.getObjectivesByFilter(0, 20, 1, 'ODS').subscribe(res => this.objetivosODS = res.content);
-    this.entidadesService.getPaged(0, 50).subscribe(res => this.entidades = res.content);
-  }
+  ngOnInit() {}
 
-  submit() {
-    if (this.form.invalid) {
-      this.message = 'Completa todos los campos.';
-      return;
+  save() {
+    if (this.form.valid) {
+      this.loading = true;
+      this.onSave.emit(this.form.value);
     }
-    this.loading = true;
-    this.message = '';
-    this.alineacionesService.createAlineacion(this.form.value).subscribe({
-      next: res => {
-        this.message = '¡Alineación guardada exitosamente!';
-        this.form.reset();
-        this.loading = false;
-      },
-      error: err => {
-        this.message = 'Error: ' + (err?.error?.result || 'No se pudo guardar');
-        this.loading = false;
-      }
-    });
   }
 }

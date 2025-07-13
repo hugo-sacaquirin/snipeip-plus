@@ -22,8 +22,13 @@ export const routes: Routes = [
       },
       {
         path: 'alineaciones',
-        loadComponent: () => import('./modules/alineaciones/pages/formulario/formulario')
-          .then(m => m.FormularioAlineacionComponent)
+        loadComponent: () => import('./modules/alineaciones/pages/list/lista')
+          .then(m => m.ListaAlineacionesComponent)
+      },
+      {
+        path: 'metas',
+        loadComponent: () => import('./modules/metas/pages/lista/lista').then(m => m.ListaMetasComponent),
+        canActivate: [authGuard]
       },
     ]
   },

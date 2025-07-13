@@ -1,0 +1,64 @@
+<!-- src/app/modules/metas/pages/lista/lista.html -->
+<div class="card mt-4">
+    <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+        <span>Metas</span>
+        <button class="btn btn-secondary btn-sm" (click)="openForm()">Nueva Meta</button>
+    </div>
+    <div class="card-body">
+        <!-- Buscador estándar para metas -->
+        <form class="row g-2 mb-3 align-items-center" (ngSubmit)="getGoalsByFilter()">
+            <div class="col-auto">
+                <select [(ngModel)]="tipoBusqueda" name="tipoBusqueda" class="form-select form-select-sm">
+                    <option [value]="0">Nombre</option>
+                    <option [value]="1">Responsable</option>
+                </select>
+            </div>
+            <div class="col-auto flex-grow-1">
+                <input [(ngModel)]="filtro" name="filtro" class="form-control form-control-sm" placeholder="Buscar...">
+            </div>
+            <div class="col-auto">
+                <button class="btn btn-primary btn-sm" type="submit">
+                    <i class="bi bi-search"></i> Buscar
+                </button>
+            </div>
+            <div class="col-auto">
+                <button class="btn btn-secondary btn-sm" type="button" (click)="clean()">
+                    <i class="bi bi-x"></i> Limpiar
+                </button>
+            </div>
+        </form>
+        <!-- Fin Buscador -->
+
+        <table class="table table-bordered table-hover table-striped">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Período</th>
+                    <th>Unidad Medida</th>
+                    <th>Valor Esperado</th>
+                    <th>Responsable</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let meta of metas">
+                    <td>{{ meta.name }}</td>
+                    <td>{{ meta.description }}</td>
+                    <td>{{ meta.period }}</td>
+                    <td>{{ meta.unitOfMeasure }}</td>
+                    <td>{{ meta.expectedValue }}</td>
+                    <td>{{ meta.responsible }}</td>
+                    <td>{{ meta.status }}</td>
+                    <td>
+                        <button class="btn btn-info btn-sm" (click)="editMeta(meta)">Editar</button>
+                        <button class="btn btn-danger btn-sm" (click)="deleteMeta(meta.id)">Eliminar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<app-formulario-meta *ngIf="showForm" [meta]="selectedMeta" (onSave)="onSave($event)" (onCancel)="closeForm()">
+</app-formulario-meta>
