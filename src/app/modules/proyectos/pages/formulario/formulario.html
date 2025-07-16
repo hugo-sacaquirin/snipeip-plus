@@ -1,0 +1,58 @@
+<!-- src/app/modules/proyectos/pages/formulario/formulario.html -->
+<div class="modal-backdrop fade show"></div>
+<div class="modal d-block" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <form [formGroup]="form" (ngSubmit)="save()" class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ form.value.id ? 'Editar' : 'Nuevo' }} Proyecto</h5>
+        <button type="button" class="btn-close" aria-label="Close" (click)="onCancel.emit()"></button>
+      </div>
+      <div class="modal-body row g-2">
+        <div class="col-md-6 mb-2">
+          <label>Nombre</label>
+          <input class="form-control" formControlName="name">
+        </div>
+        <div class="col-md-6 mb-2">
+          <label>Código</label>
+          <input class="form-control" formControlName="code">
+        </div>
+        <div class="col-md-6 mb-2">
+          <label>Tipo de Proyecto</label>
+          <select class="form-control" formControlName="projectType">
+            <option value="inversión">Inversión</option>
+            <option value="no inversión">No Inversión</option>
+          </select>
+        </div>
+        <div class="col-md-6 mb-2">
+          <label>Período de Ejecución</label>
+          <input class="form-control" formControlName="executionPeriod">
+        </div>
+        <div class="col-md-6 mb-2">
+          <label>Presupuesto Estimado</label>
+          <input class="form-control" formControlName="estimatedBudget" type="number" min="0">
+        </div>
+        <div class="col-md-6 mb-2">
+          <label>Ubicación Geográfica</label>
+          <input class="form-control" formControlName="geographicLocation">
+        </div>
+        <div class="col-md-6 mb-2">
+          <label>Estado</label>
+          <select class="form-control" formControlName="status">
+            <option value="ACTIVO">ACTIVO</option>
+            <option value="INACTIVO">INACTIVO</option>
+          </select>
+        </div>
+        <div class="col-md-6 mb-2">
+          <label>Metas Asociadas</label>
+          <select class="form-control" multiple formControlName="goalIds">
+            <option *ngFor="let goal of allGoals" [value]="goal.id">{{ goal.name }}</option>
+          </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" (click)="onCancel.emit()" type="button">Cancelar</button>
+        <button class="btn btn-primary" type="submit" [disabled]="form.invalid">Guardar</button>
+      </div>
+    </form>
+  </div>
+</div>

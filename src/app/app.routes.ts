@@ -27,8 +27,11 @@ export const routes: Routes = [
       },
       {
         path: 'metas',
-        loadComponent: () => import('./modules/metas/pages/lista/lista').then(m => m.ListaMetasComponent),
-        canActivate: [authGuard]
+        loadComponent: () => import('./modules/metas/pages/lista/lista').then(m => m.ListaMetasComponent)
+      },
+      {
+        path: 'proyectos',
+        loadComponent: () => import('./modules/proyectos/pages/lista/lista').then(m => m.ListaProyectosComponent)
       },
     ]
   },
