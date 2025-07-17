@@ -33,6 +33,10 @@ export const routes: Routes = [
         path: 'proyectos',
         loadComponent: () => import('./modules/proyectos/pages/lista/lista').then(m => m.ListaProyectosComponent)
       },
+      {
+        path: 'programas',
+        loadComponent: () => import('./modules/programas/pages/lista/lista').then(m => m.ListaProgramasComponent)
+      },
     ]
   },
   { path: '**', redirectTo: '' }

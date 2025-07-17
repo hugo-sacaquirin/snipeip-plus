@@ -8,13 +8,13 @@ const b2cPolicies = {
   },
   authorities: {
     signUpSignIn: {
-      authority: 'https://test1235555azurea.b2clogin.com/test123azurea.onmicrosoft.com/B2C_1_signupsignin',
+      authority: 'https://test123444444444azurea.b2clogin.com/test123azurea.onmicrosoft.com/B2C_1_signupsignin',
     },
     passwordReset: {
-      authority: 'https://test12355555azurea.b2clogin.com/test123azurea.onmicrosoft.com/B2C_1_passwordreset',
+      authority: 'https://test123444444444azurea.b2clogin.com/test123azurea.onmicrosoft.com/B2C_1_passwordreset',
     }
   },
-  authorityDomain: 'test123azurea.b2clogin.com'
+  authorityDomain: 'test1234444444444azurea.b2clogin.com'
 };
 
 export const msalConfig = {

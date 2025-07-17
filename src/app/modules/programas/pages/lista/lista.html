@@ -1,0 +1,72 @@
+<!-- src/app/modules/programas/pages/lista/lista.html -->
+<div class="card mt-4">
+    <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+        <span>Programas</span>
+        <button class="btn btn-secondary btn-sm" (click)="openForm()">Nuevo Programa</button>
+    </div>
+    <div class="card-body">
+        <!-- Buscador -->
+        <form class="row g-2 mb-3 align-items-center" (ngSubmit)="searchPrograms()">
+            <div class="col-auto">
+                <select [(ngModel)]="tipoBusqueda" name="tipoBusqueda" class="form-select form-select-sm">
+                    <option [value]="0">Nombre</option>
+                    <option [value]="1">Responsable</option>
+                </select>
+            </div>
+            <div class="col-auto flex-grow-1">
+                <input [(ngModel)]="filtro" name="filtro" class="form-control form-control-sm" placeholder="Buscar...">
+            </div>
+            <div class="col-auto">
+                <button class="btn btn-primary btn-sm" type="submit">
+                    <i class="bi bi-search"></i> Buscar
+                </button>
+            </div>
+            <div class="col-auto">
+                <button class="btn btn-secondary btn-sm" type="button" (click)="clean()">
+                    <i class="bi bi-x"></i> Limpiar
+                </button>
+            </div>
+        </form>
+        <!-- Fin Buscador -->
+
+        <table class="table table-bordered table-hover table-striped">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Alcance</th>
+                    <th>Responsable</th>
+                    <th>Proyectos</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let programa of programas">
+                    <td>{{ programa.name }}</td>
+                    <td>{{ programa.description }}</td>
+                    <td>{{ programa.scope }}</td>
+                    <td>{{ programa.responsible }}</td>
+                    <td>
+                        <ng-container *ngFor="let proyecto of programa.projects">
+                            <span class="badge rounded-pill bg-info text-dark me-1">{{ proyecto.name }}</span>
+                        </ng-container>
+                    </td>
+                    <td>{{ programa.status }}</td>
+                    <td>
+                        <button class="btn btn-info btn-sm" (click)="editPrograma(programa)">Editar</button>
+                        <button class="btn btn-danger btn-sm" (click)="deletePrograma(programa.id)">Eliminar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<app-formulario-programa
+  *ngIf="showForm"
+  [programa]="selectedPrograma"
+  [proyectos]="proyectos"
+  (onSave)="onSave($event)"
+  (onCancel)="closeForm()">
+</app-formulario-programa>
