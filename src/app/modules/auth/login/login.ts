@@ -11,10 +11,10 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   errorMsg = '';
   year = new Date().getFullYear();
-  constructor(public auth: AuthService, private router: Router) {}
+  constructor(public auth: AuthService, private router: Router) { }
 
   ngOnInit() {
-    
+
     console.log('LoginComponent init. isLoggedIn:', this.auth.isLoggedIn());
     // Aquí revisa de nuevo si ya hay sesión (útil después del redirect de Azure)
     if (this.auth.isLoggedIn()) {
@@ -24,14 +24,14 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.errorMsg = '';
-  try {
+    try {
       console.log('Intentando loginRedirect...');
       this.auth.login();
       // Si loginRedirect falla por error de MSAL (promesa rechazada, etc), esto lo captura:
     } catch (e: any) {
       console.error('Error al intentar loginRedirect:', e);
       this.errorMsg = 'No se pudo iniciar sesión. Asegúrate de permitir popups y cookies en tu navegador. ' +
-                      'Si el problema persiste, prueba limpiar la caché o usar otro navegador.';
+        'Si el problema persiste, prueba limpiar la caché o usar otro navegador.';
     }
   }
 }

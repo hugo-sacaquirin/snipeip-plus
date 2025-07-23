@@ -17,37 +17,42 @@
 
       <ul class="nav flex-column">
         <li class="nav-item">
-          <a routerLink="/entidades" class="nav-link text-white" routerLinkActive="active">
+          <a routerLink="/entidades" *ngIf="puesto === 'TECNICO_PLANIFICACION'" class="nav-link text-white" routerLinkActive="active">
             <i class="bi bi-building"></i> Entidades
           </a>
         </li>
         <li class="nav-item">
-          <a routerLink="/objetivos" class="nav-link text-white" routerLinkActive="active">
+          <a routerLink="/objetivos" *ngIf="puesto === 'TECNICO_PLANIFICACION'" class="nav-link text-white" routerLinkActive="active">
             <i class="bi bi-bullseye"></i> Objetivos
           </a>
         </li>
         <li class="nav-item">
-          <a routerLink="/planes" class="nav-link text-white" routerLinkActive="active">
+          <a routerLink="/planes" *ngIf="puesto === 'TECNICO_PLANIFICACION'" class="nav-link text-white" routerLinkActive="active">
             <i class="bi bi-diagram-3"></i> Planes
           </a>
         </li>
         <li class="nav-item">
-          <a routerLink="/metas" class="nav-link text-white" routerLinkActive="active">
+          <a routerLink="/gestionar-planes" *ngIf="puesto === 'REVISOR_INSTITUCIONAL'" class="nav-link text-white" routerLinkActive="active">
+            <i class="bi bi-diagram-3"></i> Gestionar Planes
+          </a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/metas" *ngIf="puesto === 'TECNICO_PLANIFICACION'" class="nav-link text-white" routerLinkActive="active">
             <i class="bi bi-bar-chart"></i> Metas
           </a>
         </li>
         <li class="nav-item">
-          <a routerLink="/alineaciones" class="nav-link text-white" routerLinkActive="active">
+          <a routerLink="/alineaciones" *ngIf="puesto === 'TECNICO_PLANIFICACION'" class="nav-link text-white" routerLinkActive="active">
             <i class="bi bi-diagram-3"></i> Alineaciones
           </a>
         </li>
         <li class="nav-item">
-          <a routerLink="/programas" class="nav-link text-white" routerLinkActive="active">
+          <a routerLink="/programas" *ngIf="puesto === 'TECNICO_PLANIFICACION'" class="nav-link text-white" routerLinkActive="active">
             <i class="bi bi-kanban"></i> Programas
           </a>
         </li>
         <li class="nav-item">
-          <a routerLink="/proyectos" class="nav-link text-white" routerLinkActive="active">
+          <a routerLink="/proyectos" *ngIf="puesto === 'TECNICO_PLANIFICACION'" class="nav-link text-white" routerLinkActive="active">
             <i class="bi bi-briefcase"></i> Proyectos
           </a>
         </li>
@@ -57,7 +62,7 @@
         <div class="d-flex align-items-center gap-2">
           <img src="assets/avatar-default.png" class="rounded-circle"
             style="width:34px; height:34px; border:2px solid #fff;">
-          <span class="text-white">{{ auth.getUser()?.name || 'Usuario' }}</span>
+          <span class="text-white">{{ nombre || 'Usuario' }}</span>
         </div>
       </div>
     </nav>
@@ -71,7 +76,7 @@
         <ul class="navbar-nav ms-auto flex-row gap-2 align-items-center">
           <li class="nav-item">
             <a class="nav-link text-dark d-flex align-items-center gap-2" style="font-weight:500;">
-              <i class="bi bi-person-circle fs-5"></i> {{ auth.getUser()?.name || 'Usuario' }}
+              <i class="bi bi-person-circle fs-5"></i> {{ nombre || 'Usuario' }}
             </a>
           </li>
           <li class="nav-item">

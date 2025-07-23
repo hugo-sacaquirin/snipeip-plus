@@ -37,6 +37,14 @@ export const routes: Routes = [
         path: 'programas',
         loadComponent: () => import('./modules/programas/pages/lista/lista').then(m => m.ListaProgramasComponent)
       },
+      {
+        path: 'planes',
+        loadComponent: () => import('./modules/planes/pages/lista/lista').then(m => m.ListaPlanesComponent)
+      },
+      {
+        path: 'gestionar-planes',
+        loadComponent: () => import('./modules/gestion-planes/pages/lista/lista').then(m => m.ListaGestionPlanesComponent)
+      },
     ]
   },
   { path: '**', redirectTo: '' }

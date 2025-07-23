@@ -1,0 +1,100 @@
+<!-- src/app/modules/planes/pages/lista/lista.html -->
+<div class="card mt-4">
+  <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+    <span>Gestión de Planes</span>
+    <button class="btn btn-secondary btn-sm" (click)="openForm()">Nuevo Plan</button>
+  </div>
+  <div class="card-body">
+    <!-- Buscador -->
+    <form class="row g-2 mb-3 align-items-center" (ngSubmit)="searchPlans()">
+      <div class="col-auto">
+        <select [(ngModel)]="tipoBusqueda" name="tipoBusqueda" class="form-select form-select-sm">
+          <option [value]="0">Nombre</option>
+          <option [value]="1">Versión</option>
+        </select>
+      </div>
+      <div class="col-auto flex-grow-1">
+        <input [(ngModel)]="filtro" name="filtro" class="form-control form-control-sm" placeholder="Buscar...">
+      </div>
+      <!--<div class="col-auto">
+        <select [(ngModel)]="statusFilter" name="statusFilter" class="form-select form-select-sm">
+          <option value="">Todos</option>
+          <option value="CREATED">Creado</option>
+          <option value="IN_REVIEW">En Revisión</option>
+          <option value="APPROVED">Aprobado</option>
+          <option value="RETURNED">Devuelto</option>
+          <option value="INACTIVE">Inactivo</option>
+        </select>
+      </div>-->
+      <div class="col-auto">
+        <button class="btn btn-primary btn-sm" type="submit">
+          <i class="bi bi-search"></i> Buscar
+        </button>
+      </div>
+      <div class="col-auto">
+        <button class="btn btn-secondary btn-sm" type="button" (click)="clean()">
+          <i class="bi bi-x"></i> Limpiar
+        </button>
+      </div>
+    </form>
+    <!-- Fin Buscador -->
+
+    <table class="table table-bordered table-hover table-striped">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Versión</th>
+          <th>Período</th>
+          <th>Estado Plan</th>
+          <th>Estado</th>
+          <th>Objetivos Institucionales</th>
+          <th>Programas</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let plan of planes">
+          <td>{{ plan.name }}</td>
+          <td>{{ plan.version }}</td>
+          <td>{{ plan.periodStart }} - {{ plan.periodEnd }}</td>
+          <td>{{ plan.planStatus }}</td>
+          <td>{{ plan.status }}</td>
+          <td>
+            <ng-container *ngFor="let obj of plan.institutionalObjectives">
+              <span class="badge rounded-pill bg-info text-dark me-1">
+                {{ obj.strategicObjective }} / {{ obj.pndObjective }} / {{ obj.odsObjective }}
+              </span>
+            </ng-container>
+          </td>
+          <td>
+            <ng-container *ngFor="let prog of plan.programs">
+              <span class="badge rounded-pill bg-success text-white me-1">
+                {{ prog.name }}
+              </span>
+            </ng-container>
+          </td>
+          <td>
+            <button class="btn btn-info btn-sm" (click)="editPlan(plan)">Editar</button>
+            <button class="btn btn-danger btn-sm" (click)="deletePlan(plan.id)">Eliminar</button>
+            <button class="btn btn-warning btn-sm"
+              (click)="openObservacionModal(plan)">
+              Gestionar a Planes
+            </button>
+            <!-- Botón para devolver (opcional, puedes agregar un método y vista para devolución) -->
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<app-formulario-plan *ngIf="showForm" [plan]="selectedPlan" [alineaciones]="alineaciones" [programas]="programas"
+  (onSave)="onSave($event)" (onCancel)="closeForm()">
+</app-formulario-plan>
+
+<app-modal-observacion
+  [show]="showObservacionModal"
+  title="Aprobar o Devolver Planes"
+  (onSubmit)="confirmSendForReview($event)"
+  (onCancel)="closeObservacionModal()">
+</app-modal-observacion>
