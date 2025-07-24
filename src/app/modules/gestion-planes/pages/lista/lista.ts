@@ -7,15 +7,15 @@ import { FormsModule } from '@angular/forms';
 import { AlineacionesService } from '../../../alineaciones/services/alineaciones.service';
 import { ProgramsService } from '../../../programas/services/programs.service';
 import { FormularioPlanComponent } from '../../../planes/pages/formulario/formulario';
-import { ModalObservacionComponent } from '../../../planes/pages/observacion/observacion';
 import { PlanesService } from '../../../planes/services/planes.service';
 import { PlanApprovalRequest, PlanRequest, PlanResponseSummary } from '../../../planes/models/plan.model';
+import { ModalObservacionGestionPlanesComponent } from '../observaciones/observaciones';
 
 
 @Component({
   selector: 'app-lista-planes',
   standalone: true,
-  imports: [CommonModule, FormsModule, FormularioPlanComponent,ModalObservacionComponent],
+  imports: [CommonModule, FormsModule, FormularioPlanComponent,ModalObservacionGestionPlanesComponent],
   templateUrl: './lista.html'
 })
 export class ListaGestionPlanesComponent implements OnInit {
@@ -31,7 +31,7 @@ export class ListaGestionPlanesComponent implements OnInit {
   selectedPlan: PlanResponseSummary | null = null;
   filtro: string = '';
   tipoBusqueda: number = 0; // 0 = nombre, 1 = versión
-  statusFilter: string = 'CREADO'; // Puedes usar para filtrar por estado
+  statusFilter: string = 'CREADO,REVISION,APROBAR,DEVOLVER'; // Puedes usar para filtrar por estado
 
   showObservacionModal = false;
   planToReview: any = null;
@@ -48,12 +48,12 @@ export class ListaGestionPlanesComponent implements OnInit {
     this.observacionValue = '';
   }
 
-confirmSendForReview(observacion: string) {
+confirmSendForApprovalOrRejection(event: { observacion: string, accion: string }) {
   if (!this.planToReview) return;
 
   const request: PlanApprovalRequest = {
-    observations: observacion,
-    status: 'EN REVISION'
+    observations: event.observacion,
+    status: event.accion
   };
 
   this.planesService.sendForReview(this.planToReview.id, request)

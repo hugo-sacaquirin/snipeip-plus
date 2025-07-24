@@ -27,7 +27,7 @@ export class ListaPlanesComponent implements OnInit {
   selectedPlan: PlanResponseSummary | null = null;
   filtro: string = '';
   tipoBusqueda: number = 0; // 0 = nombre, 1 = versión
-  statusFilter: string = 'CREADO'; // Puedes usar para filtrar por estado
+  statusFilter: string = 'CREADO,DEVOLVER'; // Puedes usar para filtrar por estado
 
   showObservacionModal = false;
   planToReview: any = null;
@@ -49,7 +49,7 @@ export class ListaPlanesComponent implements OnInit {
 
     const request: PlanApprovalRequest = {
       observations: observacion,
-      status: 'EN REVISION'
+      status: 'REVISION'
     };
 
     this.planesService.sendForReview(this.planToReview.id, request)

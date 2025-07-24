@@ -1,0 +1,31 @@
+<div class="modal-backdrop fade show" *ngIf="show"></div>
+<div class="modal d-block" tabindex="-1" *ngIf="show">
+  <div class="modal-dialog">
+    <form [formGroup]="form" (ngSubmit)="submit()" class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ title }}</h5>
+        <button type="button" class="btn-close" aria-label="Close" (click)="cancel()"></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group mb-2">
+          <label>Acción</label>
+          <select class="form-select" formControlName="accion">
+            <option value="APROBAR">APROBAR</option>
+            <option value="DEVOLVER">DEVOLVER</option>
+          </select>
+        </div>
+        <div class="form-group mb-2">
+          <label>Observación</label>
+          <textarea class="form-control" rows="3" formControlName="observacion"></textarea>
+          <div class="form-text text-danger">
+            Ingresa una observación (mínimo 10 caracteres)
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" type="button" (click)="cancel()">Cancelar</button>
+        <button class="btn btn-primary" type="submit" [disabled]="form.invalid">Enviar</button>
+      </div>
+    </form>
+  </div>
+</div>

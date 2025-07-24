@@ -45,6 +45,11 @@ export const routes: Routes = [
         path: 'gestionar-planes',
         loadComponent: () => import('./modules/gestion-planes/pages/lista/lista').then(m => m.ListaGestionPlanesComponent)
       },
+      {
+        path: 'reporte',
+        loadComponent: () => import('./modules/reporte/pages/lista/lista').then(m => m.ReportesPlanesComponent)
+      },
+
     ]
   },
   { path: '**', redirectTo: '' }

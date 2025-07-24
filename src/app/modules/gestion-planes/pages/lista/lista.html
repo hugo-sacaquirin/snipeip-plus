@@ -92,9 +92,9 @@
   (onSave)="onSave($event)" (onCancel)="closeForm()">
 </app-formulario-plan>
 
-<app-modal-observacion
+<app-modal-observacion-gestion
   [show]="showObservacionModal"
-  title="Aprobar o Devolver Planes"
-  (onSubmit)="confirmSendForReview($event)"
+  title="Aprobar o Devolver Plan"
+  (onSubmit)="confirmSendForApprovalOrRejection($event)"
   (onCancel)="closeObservacionModal()">
-</app-modal-observacion>
+</app-modal-observacion-gestion>

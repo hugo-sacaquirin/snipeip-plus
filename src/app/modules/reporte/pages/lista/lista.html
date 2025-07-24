@@ -1,0 +1,59 @@
+<div class="card mb-3 mt-4">
+  <div class="card-header bg-primary text-white d-flex align-items-center gap-2">
+    <i class="bi bi-graph-up"></i>
+    <span>Reporte de Planes</span>
+    <div class="ms-auto d-flex gap-2">
+      <button class="btn btn-success btn-sm" (click)="exportToExcel()" [disabled]="loading || planes.length === 0">
+        <i class="bi bi-file-earmark-excel"></i> Excel
+      </button>
+      <button class="btn btn-danger btn-sm" (click)="exportToPdf()" [disabled]="loading || planes.length === 0">
+        <i class="bi bi-file-earmark-pdf"></i> PDF
+      </button>
+    </div>
+  </div>
+  <div class="card-body">
+    <div *ngIf="loading" class="text-center py-4">
+      <div class="spinner-border text-primary" role="status"></div>
+      <div class="mt-2">Cargando datos...</div>
+    </div>
+    <div *ngIf="!loading && planes.length === 0" class="text-muted text-center">No existen datos para mostrar.</div>
+    <div *ngIf="!loading && planes.length > 0" class="table-responsive">
+      <table class="table table-bordered table-hover table-striped">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Versión</th>
+            <th>Período</th>
+            <th>Estado Plan</th>
+            <th>Estado</th>
+            <th>Objetivos Institucionales</th>
+            <th>Programas</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let plan of planes">
+            <td>{{ plan.name }}</td>
+            <td>{{ plan.version }}</td>
+            <td>{{ plan.periodStart }} - {{ plan.periodEnd }}</td>
+            <td>{{ plan.planStatus }}</td>
+            <td>{{ plan.status }}</td>
+            <td>
+              <ng-container *ngFor="let obj of plan.institutionalObjectives">
+                <span class="badge rounded-pill bg-info text-dark me-1">
+                  {{ obj.strategicObjective }} / {{ obj.pndObjective }} / {{ obj.odsObjective }}
+                </span>
+              </ng-container>
+            </td>
+            <td>
+              <ng-container *ngFor="let prog of plan.programs">
+                <span class="badge rounded-pill bg-success text-white me-1">
+                  {{ prog.name }}
+                </span>
+              </ng-container>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

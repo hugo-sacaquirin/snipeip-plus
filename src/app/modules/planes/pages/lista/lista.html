@@ -76,7 +76,7 @@
           <td>
             <button class="btn btn-info btn-sm" (click)="editPlan(plan)">Editar</button>
             <button class="btn btn-danger btn-sm" (click)="deletePlan(plan.id)">Eliminar</button>
-            <button class="btn btn-warning btn-sm" *ngIf="plan.planStatus === 'CREADO' || plan.planStatus === 'DEVUELTO'"
+            <button class="btn btn-warning btn-sm" *ngIf="plan.planStatus === 'CREADO' || plan.planStatus === 'DEVOLVER'"
               (click)="openObservacionModal(plan)">
               Enviar a Revisión
             </button>

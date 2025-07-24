@@ -17,43 +17,57 @@
 
       <ul class="nav flex-column">
         <li class="nav-item">
-          <a routerLink="/entidades" *ngIf="puesto === 'TECNICO_PLANIFICACION'" class="nav-link text-white" routerLinkActive="active">
+          <a routerLink="/entidades" *ngIf="puesto === 'TECNICO_PLANIFICACION'" class="nav-link text-white"
+            routerLinkActive="active">
             <i class="bi bi-building"></i> Entidades
           </a>
         </li>
         <li class="nav-item">
-          <a routerLink="/objetivos" *ngIf="puesto === 'TECNICO_PLANIFICACION'" class="nav-link text-white" routerLinkActive="active">
+          <a routerLink="/objetivos" *ngIf="puesto === 'TECNICO_PLANIFICACION'" class="nav-link text-white"
+            routerLinkActive="active">
             <i class="bi bi-bullseye"></i> Objetivos
           </a>
         </li>
         <li class="nav-item">
-          <a routerLink="/planes" *ngIf="puesto === 'TECNICO_PLANIFICACION'" class="nav-link text-white" routerLinkActive="active">
+          <a routerLink="/planes" *ngIf="puesto === 'USUARIO_EXTERNO'" class="nav-link text-white"
+            routerLinkActive="active">
             <i class="bi bi-diagram-3"></i> Planes
           </a>
         </li>
         <li class="nav-item">
-          <a routerLink="/gestionar-planes" *ngIf="puesto === 'REVISOR_INSTITUCIONAL'" class="nav-link text-white" routerLinkActive="active">
-            <i class="bi bi-diagram-3"></i> Gestionar Planes
+          <a routerLink="/gestionar-planes" *ngIf="puesto === 'REVISOR_INSTITUCIONAL'" class="nav-link text-white"
+            routerLinkActive="active">
+            <i class="bi bi-diagram-3"></i> Valida Planes
           </a>
         </li>
         <li class="nav-item">
-          <a routerLink="/metas" *ngIf="puesto === 'TECNICO_PLANIFICACION'" class="nav-link text-white" routerLinkActive="active">
+          <a routerLink="/metas" *ngIf="puesto === 'TECNICO_PLANIFICACION'" class="nav-link text-white"
+            routerLinkActive="active">
             <i class="bi bi-bar-chart"></i> Metas
           </a>
         </li>
         <li class="nav-item">
-          <a routerLink="/alineaciones" *ngIf="puesto === 'TECNICO_PLANIFICACION'" class="nav-link text-white" routerLinkActive="active">
+          <a routerLink="/alineaciones" *ngIf="puesto === 'TECNICO_PLANIFICACION'" class="nav-link text-white"
+            routerLinkActive="active">
             <i class="bi bi-diagram-3"></i> Alineaciones
           </a>
         </li>
         <li class="nav-item">
-          <a routerLink="/programas" *ngIf="puesto === 'TECNICO_PLANIFICACION'" class="nav-link text-white" routerLinkActive="active">
+          <a routerLink="/programas" *ngIf="puesto === 'TECNICO_PLANIFICACION'" class="nav-link text-white"
+            routerLinkActive="active">
             <i class="bi bi-kanban"></i> Programas
           </a>
         </li>
         <li class="nav-item">
-          <a routerLink="/proyectos" *ngIf="puesto === 'TECNICO_PLANIFICACION'" class="nav-link text-white" routerLinkActive="active">
+          <a routerLink="/proyectos" *ngIf="puesto === 'TECNICO_PLANIFICACION'" class="nav-link text-white"
+            routerLinkActive="active">
             <i class="bi bi-briefcase"></i> Proyectos
+          </a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/reporte" *ngIf="puesto === 'USUARIO_EXTERNO'" class="nav-link text-white"
+            routerLinkActive="active">
+            <i class="bi bi-file-earmark-bar-graph"></i> Reportes de Planes
           </a>
         </li>
       </ul>
